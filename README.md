@@ -5,8 +5,10 @@ Spring Boot 3.4 / Java 21 / PostgreSQL 16 + Flyway service bootstrapped for Part
 ## Quick Start (`mprocs`)
 
 ```sh
-mprocs
+./scripts/start.sh
 ```
+
+Installs `mprocs` with Homebrew when it is not already on `PATH`, then starts `mprocs` from the repo root.
 
 `mprocs.yaml` starts:
 - `postgres` — PostgreSQL 16 via `docker compose up` (port `5432`)
