@@ -1,8 +1,8 @@
-# Trust Kill-Switch — Interview Project (Case 3)
+# Trust Kill-Switch — Interview Project
 
-Spring Boot 3.4 / Java 21 / PostgreSQL 16 + Flyway service bootstrapped for Parts 2 and 3.
+Spring Boot 3.4 / Java 21 / PostgreSQL 16 + Flyway service bootstrapped for tasks 2 and 3.
 
-## Quick Start (`mprocs`)
+## Quick Start
 
 ```sh
 ./scripts/start.sh
