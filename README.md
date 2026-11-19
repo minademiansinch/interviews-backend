@@ -10,7 +10,7 @@ mprocs
 
 `mprocs.yaml` starts:
 - `postgres` — PostgreSQL 16 via `docker compose up` (port `5432`)
-- `app` — waits for Postgres TCP `5432` + `trust_db`, then runs `./gradlew --no-daemon bootRun` (port `8080`)
+- `app` — waits for Postgres TCP `5432` + `trust_db`, builds `bootJar`, then runs `java -jar` (port `8080`)
 - `tests` — runs `./gradlew test` with Testcontainers on start and stays up (press `Enter` in the pane or `r` in `mprocs` to re-run)
 - `psql` — waits for Postgres, then opens an interactive `psql` shell into `trust_db`
 - `shell` — interactive terminal
