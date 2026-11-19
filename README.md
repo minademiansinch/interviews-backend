@@ -10,6 +10,8 @@ Spring Boot 3.4 / Java 21 / PostgreSQL 16 + Flyway service bootstrapped for task
 
 Installs `mprocs` with Homebrew when it is not already on `PATH`, then starts `mprocs` from the repo root.
 
+> For the sake of time, please start Docker on the day of the interview and ensure no other containers are running, especially Postgres.
+
 `mprocs.yaml` starts:
 - `postgres` — PostgreSQL 16 via `docker compose up` (port `5432`)
 - `app` — waits for Postgres TCP `5432` + `trust_db`, builds `bootJar`, then runs `java -jar` (port `8080`)
