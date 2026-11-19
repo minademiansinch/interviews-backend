@@ -1,0 +1,12 @@
+proc_list_width: 22
+procs:
+  postgres:
+    shell: docker compose up
+  app:
+    shell: ./scripts/run-app.sh
+  tests:
+    shell: ./scripts/run-tests.sh
+  psql:
+    shell: ./scripts/run-psql.sh
+  shell:
+    shell: zsh

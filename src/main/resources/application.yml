@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: trust-kill-switch
+  datasource:
+    url: jdbc:postgresql://localhost:5432/trust_db
+    username: trust
+    password: trust
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+  mvc:
+    problemdetails:
+      enabled: true
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
