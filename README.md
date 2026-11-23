@@ -1,14 +1,22 @@
 # Trust Kill-Switch — Interview Project
 
-Spring Boot 3.4 / Java 21 / PostgreSQL 16 + Flyway service bootstrapped for tasks 2 and 3.
+### Background
+Sinch's messaging gateway checks a project's trust/compliance state on every message send (~100k req/s).
+
+Two independent sources mutate a project's trust state:
+
+1. **Automated lifecycle events** (e.g., billing/account status changes arriving asynchronously via Kafka) continuously recompute trust tiers (`UNVERIFIED`, `LIMITED`, `TRUSTED`). Enterprise projects are `EXEMPT` and cannot be blocked.
+2. **Compliance operators** can manually issue a permanent `BLOCK` on a fraudulent `CLOUD` project, transitioning it to `NON_COMPLIANT` and triggering downstream enforcement:
+   - Invalidating / updating the messaging gateway's enforcement state so traffic stops immediately
+   - Recording an immutable audit entry
+   - Reporting the fraud block to an external compliance webhook
 
 ## Quick Start
 
 ```sh
+chmod +x ./scripts/start.sh
 ./scripts/start.sh
 ```
-
-Installs `mprocs` with Homebrew when it is not already on `PATH`, then starts `mprocs` from the repo root.
 
 > For the sake of time, please start Docker on the day of the interview and ensure no other containers are running, especially Postgres.
 
@@ -19,11 +27,22 @@ Installs `mprocs` with Homebrew when it is not already on `PATH`, then starts `m
 - `psql` — waits for Postgres, then opens an interactive `psql` shell into `trust_db`
 - `shell` — interactive terminal
 
+### 3. Quick Sanity Check
+
 Verify it's running:
 
 ```sh
+# List seeded projects
 curl -s http://localhost:8080/v1/projects | jq
+
+# Single project lookup
+curl -s http://localhost:8080/v1/projects/proj-cloud-limited | jq
+
+# Check tables in psql (or use the psql pane in mprocs)
+SELECT id, account_type, trust_level, blocked, version FROM projects;
+SELECT * FROM block_audit;
 ```
+---
 
 ## Pre-Seeded Projects (`V2__seed_projects.sql`)
 
