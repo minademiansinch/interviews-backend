@@ -54,6 +54,3 @@ SELECT * FROM block_audit;
 | `proj-enterprise-exempt` | `ENTERPRISE` | `EXEMPT` | `false` | Reject block (`409 Conflict`) |
 | `proj-already-blocked` | `CLOUD` | `NON_COMPLIANT` | `true` | Already-blocked contract check |
 | `proj-high-volume` | `CLOUD` | `LIMITED` | `false` | Part 3 precedence / outbox fan-out |
-
-## Caller Identity Convention (Part 2)
-No auth/JWT setup is required — read the operator identity from an `X-Caller-Id` request header (and require it to be non-blank).
